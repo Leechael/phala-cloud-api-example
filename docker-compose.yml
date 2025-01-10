@@ -1,0 +1,27 @@
+services:
+  eliza:
+    image: phalanetwork/eliza:v0.1.7-alpha.2
+    container_name: eliza
+    command:
+      - /bin/sh
+      - -c
+      - |
+        cd /app
+        echo $${CHARACTER_DATA} | base64 -d > characters/c3po.character.json
+        pnpm run start --non-interactive --character=characters/c3po.character.json
+    ports:
+      - "3000:3000"
+    volumes:
+      - /var/run/tappd.sock:/var/run/tappd.sock
+      - tee:/app/db.sqlite
+    environment:
+      - TEE_MODE=PRODUCTION
+      - REDPILL_API_KEY=${REDPILL_API_KEY}
+      - REDPILL_MODEL=gpt-4o-mini
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - WALLET_SECRET_SALT=${WALLET_SECRET_SALT}
+      - CHARACTER_DATA=${CHARACTER_DATA}
+    restart: always
+
+volumes:
+    tee:
