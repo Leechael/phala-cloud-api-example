@@ -15,7 +15,7 @@ const request = ofetch.create({
 
 export default async function main() {
   // TODO: Replace with your app id, the following is an example and show you how it looks like
-  const app_id = 'app_31032d970dacb0f34357b8830876e30c880a7442'
+  const app_id = 'app_fcfabad3198c088cfe6e21af162db64a253e4eeb'
 
   // Step 1: Get current compose manifest
   const resp = await request(`/cvms/${app_id}/compose`)
@@ -23,15 +23,16 @@ export default async function main() {
 
   // Step 2: Adjust the compose file
   const compose_file = resp.compose_file
-  compose_file.pre_launch_script = `
-#!/bin/bash
-echo "--------------------------------"
-echo "Hello again, DSTACK!"
-echo "--------------------------------"
-echo
-env
-echo "--------------------------------"
-  `
+  compose_file.docker_compose = `
+services:
+  app:
+    image: leechael/phala-cloud-bun-starter:latest
+    container_name: app
+    ports:
+      - "80:3000"
+    volumes:
+      - /var/run/tappd.sock:/var/run/tappd.sock
+`;
 
   // Step 3(optional): Encrypt environment variables (only if you need to update env vars)
   const encrypted_envs = [

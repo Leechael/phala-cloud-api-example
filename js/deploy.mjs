@@ -16,7 +16,7 @@ export async function deploy({ teepodId, image }) {
   const docker_compose = `
 services:
   demo:
-    image: leechael/bun-webserver-demo:latest
+    image: leechael/phala-cloud-bun-starter:latest
     container_name: demo
     ports:
       - "3000:3000"
