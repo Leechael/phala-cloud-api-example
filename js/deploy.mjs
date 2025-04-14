@@ -30,7 +30,7 @@ services:
 echo "--------------------------------"
 echo "Hello, DSTACK!"
 echo "--------------------------------"
-echo
+echo "Just echo the environment variables:"
 env
 echo
 echo "--------------------------------"
@@ -40,7 +40,7 @@ echo "--------------------------------"
     name: `test`,
     compose_manifest: {
       docker_compose_file: docker_compose,
-      // pre_launch_script: pre_launch_script,
+      pre_launch_script: pre_launch_script,
       name: `test`,
     },
     vcpu: 1,
