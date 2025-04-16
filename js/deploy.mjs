@@ -86,8 +86,8 @@ echo "--------------------------------"
 
     return response
   } catch (error) {
-    if (error.response?.status === 422) {
-      console.error('Failed to deploy CVM (422):', JSON.stringify(error.response._data, null, 2))
+    if (error.response?.status === 422 || error.response?.status === 400) {
+      console.error(`Failed to deploy CVM (${error.response?.status}):`, JSON.stringify(error.response._data, null, 2))
     } else {
       console.error('Failed to deploy CVM:', error)
     }
