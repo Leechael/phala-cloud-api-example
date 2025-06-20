@@ -16,12 +16,14 @@ export async function deploy({ teepodId, image }) {
   const docker_compose = `
 services:
   demo:
-    image: leechael/phala-cloud-bun-starter:latest
+    image: leechael/phala-cloud-bun-starter:0.2.1.patched-1
     container_name: demo
     ports:
       - "3000:3000"
     volumes:
       - /var/run/tappd.sock:/var/run/tappd.sock
+    environment:
+      - FOO=\${FOO}
 `;
 
   // Optional.
@@ -40,8 +42,8 @@ echo "--------------------------------"
     name: `test`,
     compose_manifest: {
       docker_compose_file: docker_compose,
-      pre_launch_script: pre_launch_script,
-      name: `test`,
+      // pre_launch_script: pre_launch_script,
+      name: `test-env3`,
     },
     vcpu: 1,
     memory: 1024,
