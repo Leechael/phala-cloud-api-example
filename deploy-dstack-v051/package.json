@@ -1,0 +1,16 @@
+{
+  "name": "deploy-dstack-v051",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@phala/cloud": "^0.0.1",
+    "arg": "^5.0.2"
+  }
+}
