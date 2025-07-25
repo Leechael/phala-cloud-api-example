@@ -53,7 +53,7 @@ async function main(args: arg.Result<typeof typed>) {
   console.log('\n', '--------------------------------');
   console.log('Next Step: register your app on KMS.');
   console.log('Please replace PRIVATE_KEY with your private key and RPC_URL with the testnet RPC URL');
-  console.log(`cast send --rpc-url <RPC_URL> --private-key <PRIVATE_KEY> \\`);
+  console.log(`cast send --rpc-url https://mainnet.base.org --private-key <PRIVATE_KEY> \\`);
   console.log(`  ${kms_info.kms_contract_address} \\`); // KMS contract address
   console.log(`  'deployAndRegisterApp(address,bool,bool,bytes32,bytes32)' \\`);
   console.log(`  $(cast wallet address <PRIVATE_KEY>) \\`); // initialOwner - derived from private key

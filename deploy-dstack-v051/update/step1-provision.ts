@@ -54,7 +54,7 @@ async function main(args: arg.Result<typeof typed>) {
 
   console.log('The update has been provisioned, you need to execute the following command to deploy the update:')
   console.log('Step 1: register the compose_hash on chain:\n')
-  console.log(`cast send --rpc-url $RPC_URL --private-key $PRIVATE_KEY ${cvm_info.contract_address} 'addComposeHash(bytes32)' ${resp.compose_hash}`);
+  console.log(`cast send --rpc-url https://mainnet.base.org --private-key $PRIVATE_KEY ${cvm_info.contract_address} 'addComposeHash(bytes32)' ${resp.compose_hash}`);
   console.log('Step 2: deploy the update:\n')
   console.log(`bun run update/step2-deploy.ts ${cvm_id} ${resp.compose_hash} --env ${args?.['--env']}`);
 }
